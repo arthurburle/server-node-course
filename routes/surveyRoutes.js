@@ -1,5 +1,5 @@
-const { Path } = require('path-parser');
 const _ = require('lodash');
+const { Path } = require('path-parser');
 const { URL } = require('url');
 const mongoose = require('mongoose');
 const requireAuth = require('../middlewares/requireAuth');
@@ -59,15 +59,13 @@ module.exports = app => {
   app.post('/api/surveys', requireAuth, requireCredits, async (req, res) => {
     const { title, subject, body, recipients } = req.body;
 
-    if (!title || !subject || !body || !recipients) {
-      res.status(401).send({ error: 'You need to provide all the fields' });
-    }
-
     const survey = new Survey({
       title,
       subject,
       body,
-      recipients: recipients.split(',').map(email => ({ email: email.trim() })),
+      recipients: recipients
+        .split(',')
+        .map(email => ({ email: email.trim() })),
       _user: req.user.id,
       dateSent: Date.now(),
     });
