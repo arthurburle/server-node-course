@@ -21,14 +21,8 @@ class SurveyList extends Component {
               </p>
             </div>
             <div className="card-action">
-              {
-                // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                <a>Yes: {yes}</a>
-              }
-              {
-                // eslint-disable-next-line jsx-a11y/anchor-is-valid
-                <a>No: {no}</a>
-              }
+              <div>Yes: {yes}</div>
+              <div>No: {no}</div>
             </div>
           </div>
         );
