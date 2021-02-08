@@ -34,9 +34,7 @@ module.exports = app => {
           return { email, surveyId, choice };
         }
       })
-      // removes undefined
       .compact()
-      // removes duplicates
       .uniqBy('email', 'surveyId')
       .each(({ surveyId, email, choice }) => {
         Survey.updateOne(
@@ -53,7 +51,6 @@ module.exports = app => {
           }
         ).exec();
       })
-      // returns the values
       .value();
 
     res.send({});
@@ -89,39 +86,3 @@ module.exports = app => {
     }
   });
 };
-
-// arthurtesting
-// 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
-
-/* 
-echo "export SENDGRID_API_KEY='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'" > sendgrid.env
-echo "sendgrid.env" >> .gitignore
-source ./sendgrid.env
-*/
-
-// npm install --save @sendgrid/mail
-
-/*
-
-// using Twilio SendGrid's v3 Node.js Library
-// https://github.com/sendgrid/sendgrid-nodejs
-javascript
-const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
-const msg = {
-  to: 'test@example.com', // Change to your recipient
-  from: 'test@example.com', // Change to your verified sender
-  subject: 'Sending with SendGrid is Fun',
-  text: 'and easy to do anywhere, even with Node.js',
-  html: '<strong>and easy to do anywhere, even with Node.js</strong>',
-}
-sgMail
-  .send(msg)
-  .then(() => {
-    console.log('Email sent')
-  })
-  .catch((error) => {
-    console.error(error)
-  })
-
-*/
