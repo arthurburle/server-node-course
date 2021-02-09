@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import SurveyList from './surveys/SurveyList';
 
-const Dashboard = () => {
+const Dashboard2 = () => {
   return (
     <div>
       <SurveyList />
@@ -15,4 +15,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Dashboard2;
